@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { firestore } from '../firebase';
 import HeaderNavbar from "../Components/HeaderNavbar/HeaderNavbar";
-import { collection, addDoc, onSnapshot, orderBy, query, serverTimestamp, doc, updateDoc, setDoc } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import ChatRoomsSidebar from './ChatRoomsSidebar';
 
 const HomePage: React.FC = () => {
@@ -41,9 +41,9 @@ const HomePage: React.FC = () => {
 
     return (
         <div className="flex min-h-screen">
-            <ChatRoomsSidebar onSelectRoom={setSelectedRoom} />
             <div className="flex flex-1 flex-col">
                 <HeaderNavbar />
+                <ChatRoomsSidebar onSelectRoom={setSelectedRoom} />
                 <div className="mt-20 flex-1 overflow-y-auto p-4">
                     {selectedRoom ? (
                         messages.map((msg) => (
