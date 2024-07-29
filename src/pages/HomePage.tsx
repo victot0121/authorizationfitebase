@@ -1,4 +1,3 @@
-// HomePage.tsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { firestore } from '../firebase';
@@ -9,7 +8,7 @@ import ChatRoomsSidebar from './ChatRoomsSidebar';
 const HomePage: React.FC = () => {
     const { currentUser } = useAuth();
     const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState<Array<{ id: string, content: string, user: string }>>([]);
+    const [messages, setMessages] = useState<Array<{ id: string, content: string, user: string, timestamp: any }>>([]);
     const [selectedRoom, setSelectedRoom] = useState<{ id: string, name: string } | null>(null);
 
     useEffect(() => {
@@ -20,7 +19,7 @@ const HomePage: React.FC = () => {
             const newMessages = snapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
-            })) as Array<{ id: string, content: string, user: string }>;
+            })) as Array<{ id: string, content: string, user: string, timestamp: any }>;
             setMessages(newMessages);
         });
 
